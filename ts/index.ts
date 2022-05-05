@@ -709,6 +709,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // Remove from gossip mapping
     this.gossip.delete(id)
     // Remove from control mapping
+    console.log('deleting from control', id)
     this.control.delete(id)
     // Remove from backoff mapping
     this.outbound.delete(id)
@@ -1827,6 +1828,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
    * For messages not from us, this class uses `forwardMessage`.
    */
   async publish(topic: TopicStr, data: Uint8Array): Promise<PublishResult> {
+    console.log('publishing', topic, data)
     const transformedData = this.dataTransform ? this.dataTransform.outboundTransform(topic, data) : data
 
     if (this.publishConfig == null) {
@@ -1877,7 +1879,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // Send to set of peers aggregated from direct, mesh, fanout
     const rpc = createGossipRpc([rawMsg])
 
-    console.log({ tosend })
+    console.log({ tosend: Array.from(tosend).join(', ') })
     for (const id of tosend) {
       // self.send_message(*peer_id, event.clone())?;
       const sent = this.sendRpc(id, rpc)
@@ -2006,10 +2008,11 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     }
 
     // piggyback control message retries
+    console.log('invoking piggyback control', id)
     const ctrl = this.control.get(id)
-    console.log({ ctrl })
     if (ctrl) {
       this.piggybackControl(id, rpc, ctrl)
+      console.log('deleting', id)
       this.control.delete(id)
     }
 
@@ -2170,6 +2173,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     }
     // send the remaining control messages
     for (const [peer, control] of this.control.entries()) {
+      console.log('flushing', peer)
       this.control.delete(peer)
       this.sendRpc(peer, createGossipRpc([], { graft: control.graft, prune: control.prune }))
     }

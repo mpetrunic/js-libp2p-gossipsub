@@ -130,6 +130,7 @@ describe('gossip', () => {
     const graft = { ihave: [], iwant: [], graft: [{ topicID: topic }], prune: [] }
     ;(nodeA.getPubSub() as GossipSub).control.set(peerB, graft)
 
+    console.log({ peerB })
     const publishResult = await nodeA.getPubSub().publish(topic, uint8ArrayFromString('hey'))
 
     // should have sent message to peerB
