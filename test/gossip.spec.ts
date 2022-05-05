@@ -75,7 +75,7 @@ describe('gossip', () => {
     nodeASpy.pushGossip.restore()
   })
 
-  it('should send piggyback control into other sent messages', async function () {
+  it.only('should send piggyback control into other sent messages', async function () {
     this.timeout(10e4)
     const nodeA = nodes[0]
     const topic = 'Z'

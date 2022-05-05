@@ -2015,7 +2015,6 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
 
     // piggyback gossip
     const ihave = this.gossip.get(id)
-    console.log({ ihave })
     if (ihave) {
       this.piggybackGossip(id, rpc, ihave)
       this.gossip.delete(id)
