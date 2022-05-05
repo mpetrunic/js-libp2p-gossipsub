@@ -709,7 +709,6 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // Remove from gossip mapping
     this.gossip.delete(id)
     // Remove from control mapping
-    console.log('deleting from control', id)
     this.control.delete(id)
     // Remove from backoff mapping
     this.outbound.delete(id)
@@ -2008,8 +2007,9 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     }
 
     // piggyback control message retries
-    console.log('invoking piggyback control', id)
+
     const ctrl = this.control.get(id)
+    console.log('invoking piggyback control', id, { ctrl })
     if (ctrl) {
       this.piggybackControl(id, rpc, ctrl)
       console.log('deleting', id)
