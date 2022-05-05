@@ -78,7 +78,7 @@ describe('gossip', () => {
   it.only('should send piggyback control into other sent messages', async function () {
     this.timeout(10e4)
     const nodeA = nodes[0]
-    const topic = 'Z'
+    const topic = 'H'
 
     const promises = nodes.map(async (n) => await pEvent(n.getPubSub(), 'subscription-change'))
     // add subscriptions to each node

@@ -1878,7 +1878,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // Send to set of peers aggregated from direct, mesh, fanout
     const rpc = createGossipRpc([rawMsg])
 
-    console.log({ tosend: Array.from(tosend).join(', ') })
+    console.log({ tosend: Array.from(tosend).join(', '), rpc })
     for (const id of tosend) {
       // self.send_message(*peer_id, event.clone())?;
       const sent = this.sendRpc(id, rpc)
@@ -2002,6 +2002,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
   private sendRpc(id: PeerIdStr, rpc: RPC): boolean {
     const peerStreams = this.peers.get(id)
     if (!peerStreams || !peerStreams.isWritable) {
+      console.error('cannot send', id)
       this.log(`Cannot send RPC to ${id} as there is no open stream to it available`)
       return false
     }
