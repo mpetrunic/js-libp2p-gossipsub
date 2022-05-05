@@ -1853,6 +1853,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     const msgIdStr = messageIdToString(msgId)
 
     if (this.seenCache.has(msgIdStr)) {
+      console.log('duplicate')
       // This message has already been seen. We don't re-publish messages that have already
       // been published on the network.
       throw Error('PublishError.Duplicate')
@@ -1876,6 +1877,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // Send to set of peers aggregated from direct, mesh, fanout
     const rpc = createGossipRpc([rawMsg])
 
+    console.log({ tosend })
     for (const id of tosend) {
       // self.send_message(*peer_id, event.clone())?;
       const sent = this.sendRpc(id, rpc)
@@ -2005,6 +2007,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
 
     // piggyback control message retries
     const ctrl = this.control.get(id)
+    console.log({ ctrl })
     if (ctrl) {
       this.piggybackControl(id, rpc, ctrl)
       this.control.delete(id)
@@ -2012,6 +2015,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
 
     // piggyback gossip
     const ihave = this.gossip.get(id)
+    console.log({ ihave })
     if (ihave) {
       this.piggybackGossip(id, rpc, ihave)
       this.gossip.delete(id)
