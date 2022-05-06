@@ -671,7 +671,6 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
    * Removes a peer from the router
    */
   private removePeer(peerId: PeerId): PeerStreams | undefined {
-    this.log('removing peer %s', peerId)
     const id = peerId.toString()
     const peerStreams = this.peers.get(id)
 
