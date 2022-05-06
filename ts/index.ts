@@ -531,6 +531,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
    * Unmounts the gossipsub protocol and shuts down every connection
    */
   async stop(): Promise<void> {
+    console.log('stopping')
     this.log('stopping')
     // From pubsub
 
@@ -2164,6 +2165,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
    * Flush gossip and control messages
    */
   private flush(): void {
+    console.log('flushing')
     // send gossip first, which will also piggyback control
     for (const [peer, ihave] of this.gossip.entries()) {
       this.gossip.delete(peer)
@@ -2270,6 +2272,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
    * Maintains the mesh and fanout maps in gossipsub.
    */
   private async heartbeat(): Promise<void> {
+    console.log('heartbeat')
     const { D, Dlo, Dhi, Dscore, Dout, fanoutTTL } = this.opts
 
     this.heartbeatTicks++
@@ -2525,6 +2528,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // send coalesced GRAFT/PRUNE messages (will piggyback gossip)
     await this.sendGraftPrune(tograft, toprune, noPX)
 
+    console.log('random flushing')
     // flush pending gossip that wasn't piggybacked above
     this.flush()
 
