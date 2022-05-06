@@ -2530,7 +2530,7 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
 
     console.log('random flushing')
     // flush pending gossip that wasn't piggybacked above
-    this.flush()
+    //    this.flush()
 
     // advance the message history window
     this.mcache.shift()
