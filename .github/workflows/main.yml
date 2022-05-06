@@ -29,3 +29,5 @@ jobs:
           node-version: lts/*
       - run: npm install
       - run: npm run test:browser -- -t webworker --bail -- --browser firefox -- --exit
+        env: 
+          DEBUG: '*'

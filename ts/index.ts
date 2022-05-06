@@ -1877,8 +1877,6 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
 
     // Send to set of peers aggregated from direct, mesh, fanout
     const rpc = createGossipRpc([rawMsg])
-
-    console.log({ tosend: Array.from(tosend).join(', '), rpc })
     for (const id of tosend) {
       // self.send_message(*peer_id, event.clone())?;
       const sent = this.sendRpc(id, rpc)
@@ -2010,7 +2008,6 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
     // piggyback control message retries
 
     const ctrl = this.control.get(id)
-    console.log('invoking piggyback control', id, { ctrl })
     if (ctrl) {
       this.piggybackControl(id, rpc, ctrl)
       console.log('deleting', id)

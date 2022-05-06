@@ -7,13 +7,6 @@ export function createGossipRpc(messages: RPC.Message[] = [], control?: Partial<
   return {
     subscriptions: [],
     messages,
-    control: control
-      ? {
-          graft: control.graft || [],
-          prune: control.prune || [],
-          ihave: control.ihave || [],
-          iwant: control.iwant || []
-        }
-      : undefined
+    control: undefined
   }
 }

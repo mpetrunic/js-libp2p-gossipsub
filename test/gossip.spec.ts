@@ -132,10 +132,10 @@ describe('gossip', () => {
 
     console.log({ peerB })
     const publishResult = await nodeA.getPubSub().publish(topic, uint8ArrayFromString('hey'))
-
+    ;(nodeA.getPubSub() as GossipSub).control.set(peerB, graft)
     // should have sent message to peerB
     expect(publishResult.recipients.map((p) => p.toString())).to.include(peerB, 'did not send pubsub message to peerB')
-
+    ;(nodeA.getPubSub() as GossipSub).control.set(peerB, graft)
     // wait until spy is called
     const startTime = Date.now()
     while (Date.now() - startTime < 5000) {
