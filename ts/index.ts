@@ -2164,7 +2164,6 @@ export class GossipSub extends EventEmitter<GossipsubEvents> implements Initiali
    * Flush gossip and control messages
    */
   private flush(): void {
-    this.log('flushing')
     // send gossip first, which will also piggyback control
     for (const [peer, ihave] of this.gossip.entries()) {
       this.gossip.delete(peer)
