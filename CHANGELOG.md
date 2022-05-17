@@ -1,8 +1,25 @@
-# [0.14.0](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.14.0...v0.13.2) (2022-04-05)
+## [1.0.0](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.14.0...v1.0.0) (2022-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* the output of this module is now ESM-only by @achingbrain in https://github.com/ChainSafe/js-libp2p-gossipsub/pull/236
+* Tiddy Gossipsub API and comments by @dapplion in https://github.com/ChainSafe/js-libp2p-gossipsub/pull/227
+
+### Bug Fixes
+
+* Fix rpc.control metrics and reduce object creation by @dapplion in https://github.com/ChainSafe/js-libp2p-gossipsub/pull/230
+* Remove duplicate record of msgReceivedPreValidation metric by @tuyennhv in https://github.com/ChainSafe/js-libp2p-gossipsub/pull/228
+
+### Miscellaneous
+* chore: update cd action by @mpetrunic in https://github.com/ChainSafe/js-libp2p-gossipsub/pull/245
+
+
+## [0.14.0](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.14.0...v0.13.2) (2022-04-05)
 
 - New gossipsub implementation: better performance, async validation flow, improved peer scores significantly, add a lot of metrics
 
-# [0.13.2](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.13.2...v0.13.1) (2022-03-25)
+## [0.13.2](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.13.2...v0.13.1) (2022-03-25)
 
 - Do not apply P3 penalty if peers are pruned from topic mesh
 - Fix flood publish behavior
@@ -12,11 +29,11 @@
 - Prettier
 - Apply strict-boolean-expression eslint rule
 
-# [0.13.1](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.13.1...v0.13.0) (2022-02-14)
+## [0.13.1](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.13.1...v0.13.0) (2022-02-14)
 
 - Fix async getFastMsgIdStr function
 
-# [0.13.0](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.12.2...v0.13.0) (2022-01-20)
+## [0.13.0](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.12.2...v0.13.0) (2022-01-20)
 
 ## [0.12.2](https://github.com/ChainSafe/js-libp2p-gossipsub/compare/v0.12.1...v0.12.2) (2022-01-20)
 
